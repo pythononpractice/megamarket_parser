@@ -18,7 +18,7 @@ def get_pages_html(url):
     driver.maximize_window()
     ITEMS = []
     try:
-        for page in range(1, 10):
+        for page in range(1, 100):
             print(f"[+] Страница {page}")
             driver.get(url=url.replace(f'page_num', f'page-{page}'))
             WebDriverWait(driver, 60).until(
