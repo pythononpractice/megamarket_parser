@@ -57,12 +57,14 @@ def get_items(html, items):
                 bonus = int(item_bonus_amount.replace(' ', ''))
                 price = int(item_price_result[0:-1].replace(' ', ''))
                 bonus_percent = int(item_bonus_percent.replace('%', ''))
+                total_price = price - bonus
                 items.append({
                     'Наименование': item_title,
                     'Продавец': item_merchant_name,
                     'Цена': price,
                     'Сумма бонуса': bonus,
                     'Процент бонуса': bonus_percent,
+                    'Итоговая цена': total_price,
                     'Ссылка на товар': link
                 })
     return True
@@ -78,6 +80,7 @@ def save_excel(data: list, filename: str):
     writer.sheets['data'].set_column(1, 2, width=30)
     writer.sheets['data'].set_column(2, 3, width=8)
     writer.sheets['data'].set_column(3, 4, width=20)
+    writer.sheets['data'].set_column(2, 3, width=8)
     writer.sheets['data'].set_column(4, 5, width=15)
     writer.close()
     print(f'Все сохранено в {filename}.xlsx')
